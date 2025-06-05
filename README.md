@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# Fantasy Stock - Football Player Investment Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+Fantasy Stock is a web application that allows users to invest in football players, similar to a stock market but for football players. Users can create accounts, view player statistics, and place bids on players they believe will perform well.
 
-## Available Scripts
+## Project Structure
+```
+FANTASY_STOCK/
+├── frontend/               # React frontend application
+│   ├── src/
+│   │   ├── App.js         # Main application component
+│   │   ├── LoginForm/     # User authentication component
+│   │   └── InvestPage/    # Main investment interface
+│   └── package.json       # Frontend dependencies
+├── backend/               # Flask backend application
+│   ├── app.py            # Main API endpoints
+│   ├── models.py         # Database models
+│   ├── config.py         # Configuration settings
+│   └── model-gpt.py      # AI model integration
+└── marca-fantasy-scraper/ # Data scraping utility
+```
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### User Management
+- User registration and authentication
+- Session persistence using sessionStorage
+- User profile management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Player Management
+- View player statistics and performance
+- Player database with detailed information:
+  - Player ID
+  - Name
+  - Team
+  - Position (POR, DEF, CEN, DEL)
+  - Current value
+  - Previous scores
+  - Total bids
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Investment System
+- Place bids on players
+- Track investment portfolio
+- View player performance history
+- Real-time bid updates
 
-### `npm test`
+## Technical Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- React.js
+- Modern JavaScript (ES6+)
+- CSS for styling
+- Session management for user persistence
 
-### `npm run build`
+### Backend
+- Flask (Python)
+- SQLAlchemy for database management
+- RESTful API architecture
+- JSON data format
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Database Models
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### User Model
+- user_id (Primary Key)
+- user_name
+- players_bids (JSON)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Player Model
+- player_id (Primary Key)
+- player_name
+- team
+- position
+- total_bids
+- value
+- prev_scores (JSON)
 
-### `npm run eject`
+## API Endpoints
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Players
+- GET /players - Get all players
+- POST /players - Create new player
+- GET /players/<id> - Get specific player
+- PUT /players/<id> - Update player
+- DELETE /players/<id> - Delete player
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Users
+- GET /users - Get all users
+- POST /users - Create new user
+- PUT /users/<id> - Update user
+- DELETE /users/<id> - Delete user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Bids
+- PUT /update_bid - Update player bid
+- GET /get_user_bids/<id> - Get user's bids
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Setup and Installation
 
-## Learn More
+### Backend Setup
+1. Create a Python virtual environment
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Initialize the database
+4. Run the Flask server:
+   ```bash
+   python app.py
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Frontend Setup
+1. Install Node.js dependencies:
+   ```bash
+   cd frontend
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Future Enhancements
+1. Implement player search functionality
+2. Add real-time player statistics updates
+3. Enhance user portfolio analytics
+4. Implement player performance predictions
+5. Add social features for user interaction
 
-### Code Splitting
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License - see the LICENSE file for details. 
